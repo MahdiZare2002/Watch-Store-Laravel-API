@@ -17,8 +17,10 @@
 @include('admin.layouts.navigation')
 
 @include('admin.layouts.header')
-<!-- begin::main content -->
+
+@livewireStyles
 @yield('content')
+@livewireScripts
 <script src="{{ url('panel/vendors/bundle.js') }}"></script>
 <script src="{{ url('panel/vendors/slick/slick.min.js') }}"></script>
 <script src="{{ url('panel/vendors/vmap/jquery.vmap.min.js') }}"></script>
