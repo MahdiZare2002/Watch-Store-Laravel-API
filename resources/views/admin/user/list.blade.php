@@ -53,7 +53,7 @@
                                         ویرایش
                                     </a>
                                 </td>
-                                <td class="text-center align-middle">{{ $user->created_at }}</td>
+                                <td class="text-center align-middle">{{ \Hekmatinasser\Verta\Verta::instance($user->created_at)->format('%B %d، %Y') }}</td>
                             </tr>
                         @endforeach
                     </table>
