@@ -9,7 +9,7 @@
         </ul>
         <ul>
             <li data-toggle="tooltip" title="ویرایش پروفایل">
-                <a href="#" class="go-to-page">
+                <a href="" class="go-to-page">
                     <i class="icon ti-settings"></i>
                 </a>
             </li>
@@ -25,8 +25,8 @@
             <li>
                 <a href="#">کاربران</a>
                 <ul>
-                    <li><a href="#">ایجاد کاربر</a></li>
-                    <li><a href="#">لیست کاربران</a></li>
+                    <li><a href="{{ route('users.create') }}">ایجاد کاربر</a></li>
+                    <li><a href="{{ route('users.index') }}">لیست کاربران</a></li>
                 </ul>
             </li>
         </ul>

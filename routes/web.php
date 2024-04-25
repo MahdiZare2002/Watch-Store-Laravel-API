@@ -29,9 +29,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('admin', function () {
-        return view('admin.index');
-    });
+    Route::get('admin', [\App\Http\Controllers\Admin\PanelController::class, 'index'])->name('panel');
+    Route::resource('admin/users', \App\Http\Controllers\Admin\UserController::class);
 });
 
 require __DIR__ . '/auth.php';
