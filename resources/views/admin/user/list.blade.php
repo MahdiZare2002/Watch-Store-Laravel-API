@@ -27,7 +27,7 @@
                         <tbody>
                         @foreach($users as $key => $user)
                             <tr>
-                                <td class="text-center align-middle">{{$users->firstItem()}}</td>
+                                <td class="text-center align-middle">{{$users->firstItem() + $key}}</td>
                                 <td class="text-center align-middle">
                                     <figure class="avatar avatar">
                                         <img src="" class="rounded-circle" alt="image">
