@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Services\Image\ImageService;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -31,7 +33,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, ImageService $imageService)
+    public function store(CreateUserRequest $request, ImageService $imageService)
     {
         $inputs = $request->all();
         if ($request->hasFile('file')) {
@@ -66,7 +68,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user, ImageService $imageService)
+    public function update(UpdateUserRequest $request, User $user, ImageService $imageService)
     {
         $inputs = $request->all();
         if ($request->hasFile('file')) {
@@ -88,7 +90,7 @@ class UserController extends Controller
         }
         $inputs['password'] = (isset($request->password)) ? Hash::make($inputs['password']) : $user->password;
         $user->update($inputs);
-        return redirect()->route('users.index')->with('message' , 'آپدیت شد');
+        return redirect()->route('users.index')->with('message', 'آپدیت شد');
     }
 
     /**
