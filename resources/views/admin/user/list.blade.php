@@ -30,7 +30,7 @@
                                 <td class="text-center align-middle">{{$users->firstItem() + $key}}</td>
                                 <td class="text-center align-middle">
                                     <figure class="avatar avatar">
-                                        <img src="" class="rounded-circle" alt="image">
+                                        <img src="{{asset($user->photo)}}" class="rounded-circle" alt="image">
                                     </figure>
                                 </td>
                                 <td class="text-center align-middle">{{$user->name}}</td>
