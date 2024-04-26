@@ -50,7 +50,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
         //
     }
@@ -58,17 +58,37 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user, ImageService $imageService)
     {
-        //
+        $inputs = $request->all();
+        if ($request->hasFile('file')) {
+            if (!empty($user->photo)) {
+                $imageService->deleteDirectoryAndFiles($user->photo);
+            }
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'post');
+            $result = $imageService->save($request->file('file'));
+            if ($result === false) {
+                return redirect()->route('admin.content.post.index')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
+            }
+            $inputs['photo'] = $result;
+        } else {
+            if (isset($inputs['photo']) && !empty($user->photo)) {
+                $photo = $user->photo;
+                $photo['photo'] = $inputs['photo'];
+                $inputs['photo'] = $photo;
+            }
+        }
+        $inputs['password'] = (isset($request->password)) ? Hash::make($inputs['password']) : $user->password;
+        $user->update($inputs);
+        return redirect()->route('users.index')->with('message' , 'آپدیت شد');
     }
 
     /**
