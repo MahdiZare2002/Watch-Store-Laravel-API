@@ -36,6 +36,13 @@
                     <li><a href="{{ route('roles.index') }}">لیست نقش ها</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="#">لاگ ها</a>
+                <ul>
+                    <li><a href="{{route('logs')}}">لیست لاگ ها</a></li>
+
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

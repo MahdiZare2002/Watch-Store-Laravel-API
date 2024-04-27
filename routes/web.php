@@ -34,6 +34,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('/roles', \App\Http\Controllers\Admin\RoleController::class);
     Route::get('create_user_roles/{user}', [\App\Http\Controllers\Admin\UserController::class, 'createUserRoles'])->name('create.user.roles');
     Route::post('store_user_roles/{user}', [\App\Http\Controllers\Admin\UserController::class, 'storeUserRoles'])->name('store.user.roles');
+    Route::get('logs', [\App\Http\Controllers\Admin\LogViewerController::class, 'index'])->name('logs');
 });
 
 require __DIR__ . '/auth.php';
