@@ -33,7 +33,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('/users', \App\Http\Controllers\Admin\UserController::class);
     Route::resource('/roles', \App\Http\Controllers\Admin\RoleController::class);
     Route::get('create_user_roles/{user}', [\App\Http\Controllers\Admin\UserController::class, 'createUserRoles'])->name('create.user.roles');
-    Route::get('store_user_roles/{user}', [\App\Http\Controllers\Admin\UserController::class, 'storeUserRoles'])->name('store.user.roles');
+    Route::post('store_user_roles/{user}', [\App\Http\Controllers\Admin\UserController::class, 'storeUserRoles'])->name('store.user.roles');
 });
 
 require __DIR__ . '/auth.php';

@@ -111,8 +111,9 @@ class UserController extends Controller
         return view('admin.user.user_roles', compact('user', 'roles'));
     }
 
-    public function storeUserRoles(Request $request)
+    public function storeUserRoles(Request $request, User $user)
     {
-
+        $user->syncRoles($request->roles);
+        return redirect()->route('users.index')->with('message', 'نقش های کاربر با موفقیت تغییر یافت');
     }
 }
