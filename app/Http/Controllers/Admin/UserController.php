@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Intervention\Image\ImageManager;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -102,5 +103,16 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function createUserRoles(User $user)
+    {
+        $roles = Role::query()->get();
+        return view('admin.user.user_roles', compact('user', 'roles'));
+    }
+
+    public function storeUserRoles(Request $request)
+    {
+
     }
 }
