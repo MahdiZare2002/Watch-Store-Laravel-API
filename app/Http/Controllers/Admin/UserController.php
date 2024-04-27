@@ -64,7 +64,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.user.edit', compact('user'));
+        $title = 'ویرایش کاربر';
+        return view('admin.user.edit', compact('user', 'title'));
     }
 
     /**
