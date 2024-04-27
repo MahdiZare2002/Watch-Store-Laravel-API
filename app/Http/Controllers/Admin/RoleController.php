@@ -14,7 +14,7 @@ class RoleController extends Controller
     public function index()
     {
         $title = 'لیست نقش ها';
-        return view('admin.roles.list', compact('title'));
+        return view('admin.role.list', compact('title'));
     }
 
     /**
@@ -23,7 +23,7 @@ class RoleController extends Controller
     public function create()
     {
         $title = 'ایجاد نقش';
-        return view('admin.roles.create', compact('title'));
+        return view('admin.role.create', compact('title'));
     }
 
     /**
@@ -33,7 +33,7 @@ class RoleController extends Controller
     {
         $input = $request->all();
         $user = Role::create($input);
-        return redirect()->route('roles.list')->with('message', 'نقش با موفقیت ایجاد شد');
+        return redirect()->route('roles.index')->with('message', 'نقش با موفقیت ایجاد شد');
     }
 
     /**
@@ -51,7 +51,7 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         $title = 'ویرایش نقش';
-        return view('admin.roles.edit', compact('title', 'role'));
+        return view('admin.role.edit', compact('title', 'role'));
     }
 
     /**
