@@ -44,9 +44,8 @@ class CategoryController extends Controller
 
     }
 
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::query()->find($id);
         $categories = Category::query()->pluck('title', 'id');
         return view('admin.category.edit', compact('category', 'categories'));
     }

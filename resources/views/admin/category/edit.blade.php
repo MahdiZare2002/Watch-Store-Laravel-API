@@ -11,7 +11,7 @@
                         @method('PATCH')
                         <div>
                             <figure class="avatar avatar">
-                                <img src="{{url('images/admin/categories/big/'.$category->image)}}" class="rounded-circle" alt="image">
+                                <img src="{{ asset($category->image) }}" class="rounded-circle" alt="image">
                             </figure>
                         </div>
                         <div class="form-group row">

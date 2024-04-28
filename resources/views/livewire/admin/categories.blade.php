@@ -23,7 +23,7 @@
                 <td class="text-center align-middle">{{$categories->firstItem() + $index}}</td>
                 <td class="text-center align-middle">
                     <figure class="avatar avatar">
-                        <img src="{{url('images/admin/categories/big/'.$category->image)}}" class="rounded-circle" alt="image">
+                        <img src="{{asset($category->image)}}" class="rounded-circle" alt="image">
                     </figure>
                 </td>
                 <td class="text-center align-middle">{{$category->title}}</td>

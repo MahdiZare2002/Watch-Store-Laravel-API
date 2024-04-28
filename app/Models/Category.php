@@ -9,6 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['id', 'title', 'image', 'parent_id'];
+
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_id')->withDefault(['title' => '-----']);
