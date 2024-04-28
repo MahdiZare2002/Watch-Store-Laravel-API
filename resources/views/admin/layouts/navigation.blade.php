@@ -64,6 +64,13 @@
                     <li><a href="{{route('sliders.index')}}">لیست اسلایدر</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="#"> برندها</a>
+                <ul>
+                    <li><a href="{{route('brands.create')}}">ایجاد برند</a></li>
+                    <li><a href="{{route('brands.index')}}">لیست برندها</a></li>
+                </ul>
+            </li>
         </ul>
 
     </div>

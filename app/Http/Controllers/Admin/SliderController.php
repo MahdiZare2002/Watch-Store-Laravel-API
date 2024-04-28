@@ -26,14 +26,14 @@ class SliderController extends Controller
     public function store(SliderRequest $request, ImageService $imageService)
     {
         $inputs = $request->all();
-        if ($request->hasFile('file')) {
+        if ($request->hasFile('image')) {
             $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'sliders');
-            $result = $imageService->save($request->file('file'));
-            if ($result === false) {
-                return redirect()->route('sliders.index')->with('message', 'آپلود تصویر با خطا مواجه شد');
-            }
-            $inputs['image'] = $result;
+
+            $result = $imageService->save($request->file('image'));
+        } else {
+            return redirect()->route('sliders.index')->with('message', 'عکس شما آپلود نشد');
         }
+        $inputs['image'] = $result;
         Slider::query()->create($inputs);
 
         return redirect()->route('sliders.index')->with('message', 'اسلایدر با موفقیت ایجاد شد');

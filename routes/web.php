@@ -42,6 +42,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // -------------------- Products Routes -------------------- //
     Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('sliders', \App\Http\Controllers\Admin\SliderController::class);
+    Route::resource('brands', \App\Http\Controllers\Admin\BrandController::class);
 });
 
 require __DIR__ . '/auth.php';
