@@ -40,7 +40,7 @@ class UserController extends Controller
     {
         $inputs = $request->all();
         if ($request->hasFile('file')) {
-            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'post');
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'user');
             $result = $imageService->save($request->file('file'));
             if ($result === false) {
                 return redirect()->route('admin.content.post.index')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
@@ -82,7 +82,7 @@ class UserController extends Controller
             $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'post');
             $result = $imageService->save($request->file('file'));
             if ($result === false) {
-                return redirect()->route('admin.content.post.index')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
+                return redirect()->route('users.index')->with('message', 'آپلود تصویر با خطا مواجه شد');
             }
             $inputs['photo'] = $result;
         } else {
