@@ -21,8 +21,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="file"> آپلود عکس </label>
-                            <input  class="col-sm-10" type="file" class="form-control-file" id="file" name="file">
+                            <label class="col-sm-2 col-form-label" for="image"> آپلود عکس </label>
+                            <input class="col-sm-10" type="file" class="form-control-file" id="file" name="image">
                         </div>
                         <div class="form-group row">
                             <button name="submit" type="submit" class="btn btn-success btn-uppercase">

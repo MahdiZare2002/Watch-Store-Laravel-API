@@ -53,12 +53,12 @@ class SliderController extends Controller
     public function update(SliderRequest $request, Slider $slider, ImageService $imageService)
     {
         $inputs = $request->all();
-        if ($request->hasFile('file')) {
+        if ($request->hasFile('image')) {
             if (!empty($slider->image)) {
                 $imageService->deleteDirectoryAndFiles($slider->image);
             }
             $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'sliders');
-            $result = $imageService->save($request->file('file'));
+            $result = $imageService->save($request->file('image'));
             if ($result === false) {
                 return redirect()->route('sliders.index')->with('message', 'آپلود تصویر با خطا مواجه شد');
             }
@@ -66,7 +66,6 @@ class SliderController extends Controller
         } else {
             if (isset($inputs['image']) && !empty($slider->image)) {
                 $image = $slider->image;
-                $image['image'] = $inputs['image'];
                 $inputs['image'] = $image;
             }
         }

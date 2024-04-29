@@ -57,12 +57,12 @@ class BrandController extends Controller
     public function update(BrandRequest $request, Brand $brand, ImageService $imageService)
     {
         $inputs = $request->all();
-        if ($request->hasFile('file')) {
+        if ($request->hasFile('image')) {
             if (!empty($brand->image)) {
                 $imageService->deleteDirectoryAndFiles($brand->image);
             }
-            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'brands');
-            $result = $imageService->save($request->file('file'));
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'brand');
+            $result = $imageService->save($request->file('image'));
             if ($result === false) {
                 return redirect()->route('brands.index')->with('message', 'آپلود تصویر با خطا مواجه شد');
             }
@@ -70,11 +70,9 @@ class BrandController extends Controller
         } else {
             if (isset($inputs['image']) && !empty($brand->image)) {
                 $image = $brand->image;
-                $image['image'] = $inputs['image'];
                 $inputs['image'] = $image;
             }
         }
-        $categories = Category::query()->pluck('title', 'id');
         $brand->update($inputs);
 
         return redirect()->route('brands.index')->with('message', 'برند با موفقیت ویرایش شد');
