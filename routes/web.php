@@ -43,6 +43,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('sliders', \App\Http\Controllers\Admin\SliderController::class);
     Route::resource('brands', \App\Http\Controllers\Admin\BrandController::class);
+    Route::resource('colors', \App\Http\Controllers\Admin\ColorController::class);
 });
 
 require __DIR__ . '/auth.php';
