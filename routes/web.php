@@ -28,7 +28,7 @@ Route::get('/dashboard', function () {
 //    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 //});
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     // -------------------- Main Routes -------------------- //
     Route::get('/', [\App\Http\Controllers\Admin\PanelController::class, 'index'])->name('panel');
 
