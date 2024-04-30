@@ -14,8 +14,8 @@ class PropertyGroup extends Model
     ];
 
 
-//    public function properties()
-//    {
-//        return $this->hasMany(Property::class);
-//    }
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
+    }
 }
