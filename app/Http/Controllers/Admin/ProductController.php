@@ -44,7 +44,10 @@ class ProductController extends Controller
         $inputs['slug'] = Helper::make_slug($request->input('title'));
         $inputs['is_special'] = $request->input('is_special') === 'on';
         $inputs['special_expiration'] = ($request->input('special_expiration') !== null ? Verta::parse($request->input('special_expiration'))->datetime() : now());
-        Product::query()->create($inputs);
+        $product = Product::query()->create($inputs);
+
+        $colors = $request->input('colors');
+        $product->colors()->attach($colors);
 
         return redirect()->route('products.index')->with('message', 'محصول با موفقیت اضافه شد');
     }
@@ -86,6 +89,10 @@ class ProductController extends Controller
         $inputs['slug'] = Helper::make_slug($request->input('title'));
         $inputs['is_special'] = $request->input('is_special') === 'on';
         $inputs['special_expiration'] = ($request->input('special_expiration') !== null ? Verta::parse($request->input('special_expiration'))->datetime() : now());
+
+        $colors = $request->input('colors');
+        $product->colors()->sync($colors);
+
         $product->update($inputs);
         return redirect()->route('products.index')->with('message', 'محصول با موفقیت ویرایش شد');
     }

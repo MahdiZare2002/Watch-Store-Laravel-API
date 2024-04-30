@@ -25,7 +25,7 @@
                 <td class="text-center align-middle">{{$products->firstItem() + $index}}</td>
                 <td class="text-center align-middle">
                     <figure class="avatar avatar">
-                        <img src="{{url('images/admin/products/big/'.$product->image)}}" class="rounded-circle"
+                        <img src="{{asset($product->image)}}" class="rounded-circle"
                              alt="image">
                     </figure>
                 </td>
