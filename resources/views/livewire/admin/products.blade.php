@@ -14,6 +14,7 @@
             <th class="text-center align-middle text-primary">قیمت</th>
             <th class="text-center align-middle text-primary">تعداد</th>
             <th class="text-center align-middle text-primary">گالری</th>
+            <th class="text-center align-middle text-primary">ویژگی ها</th>
             <th class="text-center align-middle text-primary">ویرایش</th>
             <th class="text-center align-middle text-primary">حذف</th>
             <th class="text-center align-middle text-primary">تاریخ ایجاد</th>
@@ -25,7 +26,7 @@
                 <td class="text-center align-middle">{{$products->firstItem() + $index}}</td>
                 <td class="text-center align-middle">
                     <figure class="avatar avatar">
-                        <img src="{{asset($product->image)}}" class="rounded-circle"
+                        <img src="{{url('images/admin/products/big/'.$product->image)}}" class="rounded-circle"
                              alt="image">
                     </figure>
                 </td>
@@ -35,6 +36,11 @@
                 <td class="text-center align-middle">
                     <a class="btn btn-outline-info" href="{{route('create.product.galley',$product->id)}}">
                         گالری
+                    </a>
+                </td>
+                <td class="text-center align-middle">
+                    <a class="btn btn-outline-info" href="{{route('create.product.properties',$product->id)}}">
+                        ویژگی ها
                     </a>
                 </td>
                 <td class="text-center align-middle">
