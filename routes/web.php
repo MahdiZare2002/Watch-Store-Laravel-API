@@ -45,6 +45,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('brands', \App\Http\Controllers\Admin\BrandController::class);
     Route::resource('colors', \App\Http\Controllers\Admin\ColorController::class);
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
+
+
+    Route::get('create_product_gallery/{product}', [\App\Http\Controllers\Admin\GalleryController::class, 'addGallery'])->name('create.product.galley');
+    Route::post('store_product_gallery/{product}', [\App\Http\Controllers\Admin\GalleryController::class, 'storeGallery'])->name('store.product.galley');
 });
 
 require __DIR__ . '/auth.php';
