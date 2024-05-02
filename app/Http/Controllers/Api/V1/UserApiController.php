@@ -13,15 +13,21 @@ class UserApiController extends Controller
     {
         $user = auth()->user();
 
-        if($user) {
-            User::updateUserInfo($user,$request);
+        if ($user) {
+            User::updateUserInfo($user, $request);
             return Response()->json([
                 'result' => true,
                 'message' => "User updated successfully",
                 'data' => [
                     'user' => new UserResource($user),
                 ]
-            ]);
+            ], status: 201);
+        } else {
+            return Response()->json([
+                'result' => false,
+                'message' => "User not found",
+                'data' => [],
+            ], status: 403);
         }
     }
 }
