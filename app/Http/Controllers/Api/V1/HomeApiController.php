@@ -11,6 +11,20 @@ use Illuminate\Http\Request;
 
 class HomeApiController extends Controller
 {
+    /**
+     * @OA\Get(
+     ** path="/api/v1/home",
+     *  tags={"Home Page"},
+     *  description="get home page data",
+     *   @OA\Response(
+     *      response=200,
+     *      description="Its Ok",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   )
+     *)
+     **/
     public function home()
     {
         return response()->json([
@@ -21,9 +35,9 @@ class HomeApiController extends Controller
                 Keys::categories => Category::getAllCategories(),
                 Keys::amazing_products => ProductRepository::get6AmazingProducts(),
                 Keys::banner => Slider::query()->inRandomOrder()->first(),
-                Keys::most_seller_products => '',
-                Keys::newest_products => ''
+                Keys::most_seller_products => ProductRepository::get6MostSellingProducts(),
+                Keys::newest_products => ProductRepository::get6NewestProducts(),
             ]
-        ]);
+        ], status: 200);
     }
 }

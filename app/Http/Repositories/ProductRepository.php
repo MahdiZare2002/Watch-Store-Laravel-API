@@ -14,4 +14,20 @@ class ProductRepository
 
         return ProductResource::collection($products);
     }
+
+    public static function get6MostSellingProducts()
+    {
+        $products = Product::query()
+            ->orderBy('sold', 'DESC')->take(6)->get();
+
+        return ProductResource::collection($products);
+    }
+
+    public static function get6NewestProducts()
+    {
+        $products = Product::query()
+            ->orderBy('created_at', 'DESC')->take(6)->get();
+
+        return ProductResource::collection($products);
+    }
 }
