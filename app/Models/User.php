@@ -86,7 +86,7 @@ class User extends Authenticatable
             'address' => $request->address,
             'postal_code' => $request->postal_code,
             'lat' => $request->lat,
-            'leng' => $request->leng,
+            'lang' => $request->lang,
         ]);
     }
 }
