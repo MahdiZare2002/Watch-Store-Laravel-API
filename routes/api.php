@@ -21,7 +21,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('v1')->namespace('Api\V1')->group(function () {
     Route::post('send_sms', [\App\Http\Controllers\Api\V1\AuthApiController::class, 'sendSms']);
     Route::post('verify_sms_code', [\App\Http\Controllers\Api\V1\AuthApiController::class, 'verifySms']);
+
     Route::get('home', [\App\Http\Controllers\Api\V1\HomeApiController::class, 'home']);
+
+    Route::get('most_sold_products' , [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'mostSoldProducts']);
+    Route::get('most_viewed_products' , [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'mostViewedProducts']);
+    Route::get('newest_products' , [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'newestProducts']);
+    Route::get('cheapest_products' , [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'cheapestProducts']);
+    Route::get('most_expensive_products' , [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'mostExpensiveProducts']);
 });
 
 Route::prefix('v1')->namespace('Api\V1')->middleware('auth:sanctum')->group(function () {
