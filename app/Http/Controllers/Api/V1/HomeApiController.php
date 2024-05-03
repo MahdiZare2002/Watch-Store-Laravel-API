@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Repositories\ProductRepository;
 use App\Http\Services\Keys;
 use App\Models\Category;
 use App\Models\Slider;
@@ -18,7 +19,7 @@ class HomeApiController extends Controller
             'data' => [
                 Keys::sliders => Slider::getSliders(),
                 Keys::categories => Category::getAllCategories(),
-                Keys::amazing_products => '',
+                Keys::amazing_products => ProductRepository::get6AmazingProducts(),
                 Keys::banner => Slider::query()->inRandomOrder()->first(),
                 Keys::most_seller_products => '',
                 Keys::newest_products => ''
