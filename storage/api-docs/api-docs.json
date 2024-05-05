@@ -261,6 +261,52 @@
                 }
             }
         },
+        "/api/v1/save_product_comment": {
+            "post": {
+                "tags": [
+                    "Product Details"
+                ],
+                "description": "save user comment for product",
+                "operationId": "f10e41ac3fe9dcb761224bdb73f33c14",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "product_id": {
+                                        "description": "product id",
+                                        "type": "integer"
+                                    },
+                                    "parent_id": {
+                                        "description": "parent id",
+                                        "type": "integer"
+                                    },
+                                    "body": {
+                                        "description": "user comment text",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Data saved",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/v1/register": {
             "post": {
                 "tags": [

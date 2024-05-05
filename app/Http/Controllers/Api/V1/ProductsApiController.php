@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\ProductRepository;
+use App\Http\Resources\CommentResource;
 use App\Http\Resources\ProductResource;
 use App\Http\Services\Keys;
 use App\Livewire\Admin\Products;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use function Sodium\increment;
@@ -243,6 +245,65 @@ class ProductsApiController extends Controller
         return response()->json([
             'result' => true,
             'message' => 'Success To Get Product Details',
+            'data' => [
+                new ProductResource($product),
+            ]
+        ], status: 200);
+    }
+
+    /**
+     * @OA\Post(
+     ** path="/api/v1/save_product_comment",
+     *  tags={"Product Details"},
+     *   security={{"sanctum":{}}},
+     *  description="save user comment for product",
+     * @OA\RequestBody(
+     *    required=true,
+     *         @OA\MediaType(
+     *           mediaType="multipart/form-data",
+     *           @OA\Schema(
+     *           @OA\Property(
+     *                  property="product_id",
+     *                  description="product id",
+     *                  type="integer",
+     *               ),
+     *     *           @OA\Property(
+     *                  property="parent_id",
+     *                  description="parent id",
+     *                  type="integer",
+     *               ),
+     *          @OA\Property(
+     *                  property="body",
+     *                  description="user comment text",
+     *                  type="string",
+     *               ),
+     *           ),
+     *       )
+     * ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Data saved",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   )
+     *)
+     **/
+    public function saveComment(Request $request)
+    {
+        $user = auth()->user();
+        Comment::query()->create([
+            'product_id' => $request->input('product_id'),
+            'parent_id' => $request->input('parent_id', null),
+            'body' => $request->input('body'),
+            'user_id' => $user->id,
+        ]);
+
+        $product = Product::query()->find($request->input('product_id'));
+
+        return response()->json([
+            'result' => true,
+            'message' => 'Success To Save Comment',
             'data' => [
                 new ProductResource($product),
             ]
