@@ -24,11 +24,14 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
 
     Route::get('home', [\App\Http\Controllers\Api\V1\HomeApiController::class, 'home']);
 
-    Route::get('most_sold_products' , [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'mostSoldProducts']);
-    Route::get('most_viewed_products' , [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'mostViewedProducts']);
-    Route::get('newest_products' , [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'newestProducts']);
-    Route::get('cheapest_products' , [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'cheapestProducts']);
-    Route::get('most_expensive_products' , [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'mostExpensiveProducts']);
+    Route::get('most_sold_products', [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'mostSoldProducts']);
+    Route::get('most_viewed_products', [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'mostViewedProducts']);
+    Route::get('newest_products', [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'newestProducts']);
+    Route::get('cheapest_products', [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'cheapestProducts']);
+    Route::get('most_expensive_products', [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'mostExpensiveProducts']);
+
+    Route::get('products_by_category/{id}', [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'productsByCategory']);
+    Route::get('products_by_brand/{id}', [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'productsByBrand']);
 });
 
 Route::prefix('v1')->namespace('Api\V1')->middleware('auth:sanctum')->group(function () {

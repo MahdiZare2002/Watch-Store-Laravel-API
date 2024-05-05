@@ -70,4 +70,16 @@ class ProductRepository
 
         return ProductResource::collection($products);
     }
+
+    public static function getProductsByCategory($id)
+    {
+        $products = Product::query()->where('category_id', $id)->get();
+        return ProductResource::collection($products);
+    }
+
+    public static function getProductsByBrand($id)
+    {
+        $products = Product::query()->where('brand_id', $id)->get();
+        return ProductResource::collection($products);
+    }
 }
