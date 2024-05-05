@@ -32,6 +32,9 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
 
     Route::get('products_by_category/{id}', [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'productsByCategory']);
     Route::get('products_by_brand/{id}', [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'productsByBrand']);
+
+    Route::get('product_details/{product}', [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'productDetail']);
+
 });
 
 Route::prefix('v1')->namespace('Api\V1')->middleware('auth:sanctum')->group(function () {

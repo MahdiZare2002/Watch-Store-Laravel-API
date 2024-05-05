@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\ProductRepository;
+use App\Http\Resources\ProductResource;
 use App\Http\Services\Keys;
 use App\Livewire\Admin\Products;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use function Sodium\increment;
 
 class ProductsApiController extends Controller
 {
@@ -206,6 +209,42 @@ class ProductsApiController extends Controller
             'data' => [
                 Keys::brands => Brand::getAllBrands(),
                 Keys::products_by_brand => ProductRepository::getProductsByBrand($id)->response()->getData(true),
+            ]
+        ], status: 200);
+    }
+
+    /**
+     * @OA\Get(
+     ** path="/api/v1/product_details/{id}",
+     *  tags={"Product Details"},
+     *  description="get product details data by product id",
+     *     @OA\Parameter(
+     *         description="product id",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Its Ok",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   )
+     *)
+     **/
+    public function productDetail(Product $product): \Illuminate\Http\JsonResponse
+    {
+        $product->increment('review');
+        return response()->json([
+            'result' => true,
+            'message' => 'Success To Get Product Details',
+            'data' => [
+                new ProductResource($product),
             ]
         ], status: 200);
     }
