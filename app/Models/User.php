@@ -89,4 +89,9 @@ class User extends Authenticatable
             'lang' => $request->lang,
         ]);
     }
+
+    public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
