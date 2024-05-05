@@ -310,4 +310,43 @@ class ProductsApiController extends Controller
         ], status: 200);
     }
 
+    /**
+     * @OA\Post(
+     ** path="/api/v1/search_product",
+     *  tags={"Products Page"},
+     *  description="search product",
+     *    @OA\RequestBody(
+     *    required=true,
+     *          @OA\MediaType(
+     *           mediaType="multipart/form-data",
+     *           @OA\Schema(
+     *           @OA\Property(
+     *                  property="search",
+     *                  type="string",
+     *               ),
+     *     )
+     *   )
+     * ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Its Ok",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   )
+     *)
+     **/
+    public function searchProduct(Request $request): \Illuminate\Http\JsonResponse
+    {
+        return response()->json([
+            'result' => true,
+            'message' => 'application products page',
+            'data' => [
+                Keys::brands => Brand::getAllBrands(),
+                Keys::searched_products => ProductRepository::searchedProduct($request->input('search'))->response()->getData(true),
+            ]
+
+        ], 200);
+    }
+
 }

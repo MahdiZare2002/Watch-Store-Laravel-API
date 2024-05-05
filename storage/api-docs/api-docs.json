@@ -307,6 +307,38 @@
                 ]
             }
         },
+        "/api/v1/search_product": {
+            "post": {
+                "tags": [
+                    "Products Page"
+                ],
+                "description": "search product",
+                "operationId": "a323288506b493a524ad56eeecbc018b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "search": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Its Ok",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/register": {
             "post": {
                 "tags": [
