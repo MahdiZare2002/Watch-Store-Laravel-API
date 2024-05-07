@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\PaymentApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,8 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
     Route::get('product_details/{product}', [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'productDetail']);
 
     Route::post('search_product', [\App\Http\Controllers\Api\V1\ProductsApiController::class, 'searchProduct']);
+
+    Route::get('payment/callback', [\App\Http\Controllers\Api\v1\PaymentApiController::class, 'callback']);
 });
 
 Route::prefix('v1')->namespace('Api\V1')->middleware('auth:sanctum')->group(function () {
