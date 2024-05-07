@@ -11,6 +11,58 @@ use Illuminate\Http\Request;
 
 class PaymentApiController extends Controller
 {
+    /**
+     * @OA\Post(
+     * path="/api/v1/payment",
+     *  tags={"Payment"},
+     *  description="send products id in basket to payment",
+     *  security={{"sanctum":{}}},
+     *     @OA\RequestBody(
+     *        required = true,
+     *        description = "Data packet for Test",
+     *        @OA\JsonContent(
+     *             type="object",
+     *              @OA\Property(
+     *                 property="address_id",
+     *                 type="integer",
+     *                 example="4"
+     *                ),
+     *             @OA\Property(
+     *                property="items",
+     *                type="array",
+     *                example={{
+     *                  "product_id": 2,
+     *                  "count": 2,
+     *                }, {
+     *                  "product_id": 3,
+     *                  "count": 2,
+     *                }
+     *     },
+     *                @OA\Items(
+     *                      @OA\Property(
+     *                         property="product_id",
+     *                         type="integer",
+     *                         example="1"
+     *                      ),
+     *                      @OA\Property(
+     *                         property="count",
+     *                         type="integer",
+     *                         example="2"
+     *                      ),
+     *                ),
+     *             ),
+     *        ),
+     *     ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Its Ok",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   )
+     * )
+     */
+
     public function payment(Request $request)
     {
         $user = auth()->user();
@@ -19,7 +71,7 @@ class PaymentApiController extends Controller
         foreach ($request->items as $item) {
             $product = Product::query()->find($item['product_id']);
             if ($product->discount == 0) {
-                $total_price += $product->price * $item['count'];
+                $total_price +=   $product->price * $item['count'];
             } else {
                 // (1000 - (( 1000 * 20)/100)) * 5
                 $total_price += ($product->price - (($product->price * $product->discount) / 100)) * $item['count'];
@@ -34,11 +86,12 @@ class PaymentApiController extends Controller
             'code' => rand(1111, 9999)
         ]);
 
+
         foreach ($request->items as $item) {
 
             $product = Product::query()->find($item['product_id']);
             if ($product->discount == 0) {
-                $total_price = $product->price * $item['count'];
+                $total_price =   $product->price * $item['count'];
             } else {
                 // (1000 - (( 1000 * 20)/100)) * 5
                 $total_price = ($product->price - (($product->price * $product->discount) / 100)) * $item['count'];
@@ -52,7 +105,6 @@ class PaymentApiController extends Controller
                 'discount' => $product->discount,
                 'discount_price' => $total_price
             ]);
-
         }
     }
 }

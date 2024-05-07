@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -16,8 +17,10 @@ return new class extends Migration {
             $table->integer('code')->default(0);
             $table->string('status')->default(\App\Enums\PaymentStatus::Draft->value);
             $table->string('transaction_id')->nullable();
-            $table->foreignId('address_id')->constrained('addresses');
-            $table->foreignId('user_id')->constrained('users');
+            $table->unsignedBigInteger('address_id');
+            $table->foreign('address_id')->references('id')->on('addresses');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
