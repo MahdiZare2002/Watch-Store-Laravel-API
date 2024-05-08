@@ -123,8 +123,8 @@ return [
             'apiPaymentUrl' => 'https://napi.jibit.ir/ppg/v3',
             'apiKey' => '',
             'apiSecret' => '',
-           // You can change the token storage path in Laravel like this
-           // 'tokenStoragePath' => function_exists('storage_path') ? storage_path('jibit/') : 'jibit/'
+            // You can change the token storage path in Laravel like this
+            // 'tokenStoragePath' => function_exists('storage_path') ? storage_path('jibit/') : 'jibit/'
             'tokenStoragePath' => 'jibit/',
             'callbackUrl' => 'http://yoursite.com/path/to',
             'description' => 'payment using jibit',
@@ -310,10 +310,10 @@ return [
             'zaringateApiVerificationUrl' => 'https://ir.zarinpal.com/pg/services/WebGate/wsdl',
 
             'mode' => 'sandbox', // can be normal, sandbox, zaringate
-            'merchantId' => '',
-            'callbackUrl' => public_path('api/v1/callback'),
+            'merchantId' => '1ae832b6-33cc-4e70-86fb-fb2cf25fb74b',
+            'callbackUrl' => 'http://127.0.0.1:8000/api/v1/payment/callback',
             'description' => 'payment using zarinpal',
-            'currency' => 'T', //Can be R, T (Rial, Toman)
+            'currency' => 'R', //Can be R, T (Rial, Toman)
         ],
         'zibal' => [
             /* normal api */
