@@ -48,4 +48,5 @@ Route::prefix('v1')->namespace('Api\V1')->middleware('auth:sanctum')->group(func
     Route::post('payment', [\App\Http\Controllers\Api\V1\PaymentApiController::class, 'payment'])->name('payment');
 
     Route::post('profile', [\App\Http\Controllers\Api\V1\UserApiController::class, 'profile'])->name('profile');
+    Route::post('received_orders', [\App\Http\Controllers\Api\V1\UserApiController::class, 'receivedOrders'])->name('receivedOrders');
 });

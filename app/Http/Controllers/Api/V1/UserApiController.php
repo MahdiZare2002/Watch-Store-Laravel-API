@@ -95,6 +95,21 @@ class UserApiController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     * path="/api/v1/profile",
+     *   tags={"User info"},
+     *   security={{"sanctum":{}}},
+     *   @OA\Response(
+     *      response=200,
+     *      description="It's Ok",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   )
+     *)
+     **/
+
     public function profile(Request $request)
     {
         $user = auth()->user();
@@ -104,9 +119,19 @@ class UserApiController extends Controller
             'data' => [
                 Keys::user => new UserResource($user),
                 Keys::user_processing_count => UserRepository::processingUserOrderCount($user),
-                Keys::user_received_count => '',
-                Keys::user_rejected_count => '',
+                Keys::user_received_count => UserRepository::receivedUserOrderCount($user),
+                Keys::user_rejected_count => UserRepository::rejectedUserOrderCount($user),
             ]
-        ]);
+        ], status: 200);
+    }
+
+    public function receivedOrders(Request $request)
+    {
+        $user = auth()->user();
+        return response()->json([
+            'result' => true,
+            'message' => "user's orders",
+            'data' => UserRepository::receivedUserOrder($user),
+        ], status: 200);
     }
 }
