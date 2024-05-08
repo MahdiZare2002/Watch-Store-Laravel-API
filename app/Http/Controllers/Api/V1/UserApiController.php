@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Repositories\UserRepository;
 use App\Http\Resources\UserResource;
+use App\Http\Services\Keys;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -91,5 +93,20 @@ class UserApiController extends Controller
                 'data' => [],
             ], status: 403);
         }
+    }
+
+    public function profile(Request $request)
+    {
+        $user = auth()->user();
+        return response()->json([
+            'result' => true,
+            'message' => "user's profile",
+            'data' => [
+                Keys::user => new UserResource($user),
+                Keys::user_processing_count => UserRepository::processingUserOrderCount($user),
+                Keys::user_received_count => '',
+                Keys::user_rejected_count => '',
+            ]
+        ]);
     }
 }
