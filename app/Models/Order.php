@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Enums\OrderStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
@@ -26,5 +27,10 @@ class Order extends Model
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
+    }
+
+    public function recievedOrderDetails()
+    {
+        return $this->hasMany(OrderDetail::class)->where('status', OrderStatus::Received->value);
     }
 }
