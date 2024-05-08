@@ -4,9 +4,9 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src=".\public\screenshots\panel.png" alt="admin-panel" width="400" height="400/">
-<img src=".\public\screenshots\products.png" alt="admin-panel" width="400" height="400/">
-<img src=".\public\screenshots\swagger.png" alt="admin-panel" width="400" height="400/">
+<img src=".\public\screenshots\panel.png" alt="admin-panel" style="max-width: 100%;">
+<img src=".\public\screenshots\products.png" alt="admin-panel" style="max-width: 100%;">
+<img src=".\public\screenshots\swagger.png" alt="admin-panel" style="max-width: 100%;">
 
   
   
