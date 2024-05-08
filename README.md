@@ -28,7 +28,7 @@ Here're some of the project's best features:
 <h2>🛠️ Installation Steps:</h2>
 
 ```
-git clone https://github.com/MobinaJafarian/A-Store-with-Laravel-API.git
+git clone https://github.com/MahdiZare2002/Watch-Store-Laravel-API.git
 ```
 
 ```
