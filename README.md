@@ -60,9 +60,9 @@ php artisan serve
 Technologies used in the project:
 
 *   Laravel 10
+*   PHP 8.3
 *   Livewire 2
 *   L5-Swagger
-*   PHP 8.3
 
 <h2>🛡️ License:</h2>
 
